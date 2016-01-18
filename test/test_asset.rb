@@ -772,6 +772,10 @@ class BundledAssetTest < Sprockets::TestCase
     assert_equal read("asset/users.js.erb") + "var jQuery;\n\n\n", asset("unknownexts.min.js").to_s
   end
 
+  test "requiring a file with require_asset" do
+    assert_equal  "(function() {\n  \"CoffeeScript\";\n\n\n}).call(this);\n", asset("require_asset.js").to_s
+  end
+
   test "requiring a file with a relative path" do
     assert_equal read("asset/project.js.erb") + "\n",
       asset("relative/require.js").to_s
